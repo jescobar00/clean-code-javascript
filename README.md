@@ -22,7 +22,7 @@ hay unas cosas en las que no estoy de acuerdo.
 ## Introducción
 
 ![Humorous image of software quality estimation as a count of how many expletives
-you shout when reading code](http://www.osnews.com/images/comics/wtfm.jpg)
+you shout when reading code](http://www.osnews.com/images/comics/wtfm.jpg)"Imagen de una revisión de código, uno con mejores prácticas que el otro"
 
 Principios de Ingeniería de Software por Robert C. Martin en el libro
 [_Código Limpio_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
@@ -34,7 +34,7 @@ No se deben seguir estrictamente todos los principios e incluso aún menos,
 como tampoco, éstos van a ser dogmas internacionales ni verdades absolutas.
 Los conceptos explicados no son más una compilación de buenas prácticas que
 han sido agrupadas a lo largo de muchos años de experiencia colectiva por
-los autores de _Código Limpio_.
+los autores de [_Código Limpio_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882).
 
 Nuestro oficio de ingeniería de software tiene poco más de 50 años y todavía
 estamos aprendiendo mucho. Quizás cuando la arquitectura del software sea tan
@@ -96,6 +96,7 @@ Haz tus variables sean fáciles de entender y buscar. Herramientas como
 [buddy.js](https://github.com/danielstjules/buddy.js) y
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
 pueden ayudan a identificar constantes no nombradas.
+Una forma de saber que nuestro código está yendo por buen camino, es que otra persona pueda comprender la idea con facilidad
 
 **🙅‍ Mal:**
 
@@ -260,11 +261,12 @@ de desestructuración que nos ofrece ES2015/ES6. Éstas tienen algunas ventajas:
 
 1. Cuando alguien mira la firma de la función, sabe inmediatamente que propiedades
    están siendo usadas
-2. La desetructuración también clona los valores primitivos especificados del `objeto argumento`
+2. La desestructuración también clona los valores primitivos especificados del `objeto argumento`
    pasado a la función. Esto puede servir de ayuda para prevenir efectos adversos.
    _Nota: Los objetos y los arrays que son desestructurados del objeto parámetro NO son clonados._
-3. Las herramientas lintera o _linterns_ pueden avisarte de qué propiedades del
-   objeto parámetro no están en uso. _Cosa que es imposile sin desestructuración._
+3. Los _linters_ como [SonarLint]https://www.sonarlint.org/, son herramientas que 
+   identifican posibles errores en el código. Como avisarte qué
+   parámetros no tienen uso. _Cosa que es imposile sin desestructuración._
 
 **🙅‍ Mal:**
 
@@ -296,7 +298,7 @@ crearMenu({
 De lejos, es la regla más importante en la ingeniería del software. Cuando
 las funciones hacen más de una cosa, son difíciles de componer y _testear_
 entre otras cosas. Si isolamos las funciones por acciones, éstas pueden ser
-modificadas y mantenidas con mayor facilidad y tu código será mucho más limpio.
+modificadas y mantenidas con mayor facilidad y tu código será mucho más limpio(Principio de _Atomicidad_).
 De toda esta guía... si has de aprender algo, que sea esto. Ya estarás mmuy
 por delante de muchos desarrolladores de software.
 
@@ -431,7 +433,7 @@ function lexer(tokens) {
 ### Elimina código duplicado
 
 Haz todo lo posible para evitar duplicación de código. Duplicar código es
-malo porque significa que para editar un comportamiento... tendrás que modificarlko
+malo porque significa que para editar un comportamiento... tendrás que modificarlo
 en más de un sitio. ¿Y no queremos trabajar de más, verdad?
 
 Como caso práctico: Imagina que tienes un restaurante. Llevas el registro del
@@ -446,7 +448,7 @@ ese código de más. Borrar la duplicación de código significa crear una abstr
 que pueda manejar este conjunto de cosas diferentes con una sola función/módulo/clase.
 
 Hacer que la abstracción sea correcta es fundamental y a veces bastante complejo.
-Es por eso que debes seguir los Principios `SOLID` establecidos en la sección _Clases_.
+Es por eso que debes seguir los Principios `SOLID` establecidos en la sección [_Clases_](#classes).
 Las malas abstracciones pueden ser peores que el código duplicado. ¡Así que ten cuidado!
 Dicho esto, si se puede hacer una buena abstracción, ¡Házla! Evita repetirte
 porque de lo contrario, como hemos comentado anteriormente, te verás editando
@@ -1233,13 +1235,13 @@ class Human extends Mamifero {
 
 **[⬆ Volver arriba](#contenido)**
 
-### Utiliza el anidación de funciones
+### Utiliza el anidado de funciones
 
 Este es un patrón útil en Javascript y verás que muchas librerías como jQuery
 o Lodash lo usan. Permite que tu código sea expresivo y menos verboso.
 Por esa razón, utiliza las funciones anidadas y date cuenta de que tan limpio estará
 tu código. En las funciones de tu clase, sencillamente retorna `this` al final de
-cada una y con eso, tienes todo lo necesario pra poder anidar las llamadas a las
+cada una y con eso, tienes todo lo necesario para poder anidar las llamadas a las
 funciones.
 
 **🙅‍ Mal:**
@@ -1319,13 +1321,13 @@ const coche = new Coche("Ford", "F-150", "rojo")
 ### Prioriza la composición en vez de la herecia
 
 Como se citó en [_Patrones de Diseño_](https://en.wikipedia.org/wiki/Design_Patterns)
-por "the Gang of Four", deberías priorizar la composición en vez de la herecia
-siempre que puedas. Hay muy buenas razones para usar tanto la herecia como la
+por "the Gang of Four", deberías priorizar la composición en vez de la herencia
+siempre que puedas. Hay muy buenas razones para usar tanto la herencia como la
 composición. El problema principal es que nuestra mente siempre tiende a la herencia
 como primera opción, pero deberíamos de pensar qué tan bien nos encaja la composición
 en ese caso particular porque en muchas ocasiones es lo más acertado.
 
-Te estarás preguntando entonces, _¿Cuando debería yo usar la herencia?_ Todo depende.
+Te estarás preguntando entonces, _¿Cuándo debería yo usar la herencia?_ Todo depende.
 Depende del problema que tengas entre mano, pero ya hay ocasiones particulares donde
 la herencia tiene más sentido que la composición:
 
@@ -1544,7 +1546,7 @@ Este es un término que asusta para lo sencillo que es. Estrictamente se define 
 "Si S es un subtipo de T, entonces los objetos del tipo T deberían poderse substituir
 por objetos del tipo S".
 
-Un ejemplo práctico vien a ser si tenemos una _clase padre_ y una _clase hija_,
+Un ejemplo práctico viene a ser si tenemos una _clase padre_ y una _clase hija_,
 entonces ambas han de poderse substituir la una por la otra y viceversa sin recibir
 ningún tipo de error o datos erróneos. Un caso práctico es el del cuadrado y el
 rectángulo. Geométricamente, un cuadrado es un rectángulo, pero si lo creamos
@@ -1847,15 +1849,15 @@ rastreadorDeInventario.pedirArticulos();
 
 El testing es más importante que la entrega. Si no tienes test o tienes muchos
 que no soy de gran ayuda, cada vez que quieras entregar valor no estarás seguro
-de ue eso funciona debidamente y que nada falla. Puedes decidir con el equipo
+de que eso funciona debidamente y que nada falla. Puedes decidir con el equipo
 cuál es el porcentaje al que queréis ceñiros pero, la única manera de tener
 confianza total de que nada falla, es teniendo 100% de covertura de test. Para
-esto, ncesitarás tener una gran herramienta para poder testear pero también
+esto, necesitarás tener una gran herramienta para poder testear pero también
 una que te calcule adecuadamente [el porcentaje cubierto](http://gotwarlost.github.io/istanbul/).
 
 No hay excusas para no escribir tests. Hay
 [un montón de frameworks de JS](http://jstherightway.org/#testing-tools) entre
-los que podréis tu y tu equipo decidir. Una vez hayáis elegido el framework,
+los que podréis tú y tu equipo decidir. Una vez hayáis elegido el framework,
 para cada nueva funcionalidad que se quiera añadir a la plataforma, escribir tests.
 Si prefieres hacer _Test-Driven Development_ me parece bien, pero la ide principal de
 los test es dar confianza suficiente al programador para que pueda seguir entregando valor.
@@ -1916,7 +1918,7 @@ describe("MakeMomentJSGreatAgain", () => {
 
 ## Concurrencia
 
-### Usa Promesas, no callbacks
+### Usa _Promesas_, no _callbacks_
 
 _Los callbacks son funciones que se pasan como parámetros a otras funciones
 para ser ejecutaras una vez esta función termina. Por ejemplo: Dada las funciones
@@ -1924,7 +1926,7 @@ A y B, se dice que B es el callback de A si la función B es pasada como paráme
 a la función A y esta, se ejecuta este callback una vez ha terminado_
 
 Los `callbacks` no son limpios ni en cuanto a legibilidad ni en cuanto a formato
-de texto _(dado que provocan niveles de identación)_. Con ES2015/ES6 las promesas
+de texto _(dado que provocan niveles de identación)_. Con ES2015/ES6 las _promesas_
 son un tipo global. ¡Úsalas!
 
 **🙅‍ Mal:**
@@ -1973,11 +1975,11 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
 
 ### Async/Await is incluso más limpio que las Promesas
 
-Las promesas son una elección más limpia que los callbacks pero ES2017/ES8
+Las _promesas_ son una elección más limpia que los _callback_  pero ES2017/ES8
 trae la funcionalidad de `async/await` que es incluos más limpio que las promesas.
 Todo lo que tienes que hacer es añadir el prefijo `async` a una función y entonces
-ya podemos usar esa función de manera imperative sin ningún `.then()`. La
-palabra `await` la usarás para hacer que ese código asincrono se comporte de
+ya podemos usar esa función de manera imperativa sin ningún `.then()`. La
+palabra `await` la usarás para hacer que ese código asíncrono se comporte de
 "manera síncrona".
 
 **🙅‍ Mal:**
@@ -2027,11 +2029,10 @@ de código. Además se notifica siempre en la consola del navegador.
 
 ### No ignores los errores capturados
 
-No hacer nada con los errores capturados no te da la opción de anticiparte
-o arreglar dicho error. El printar el error por la consola del navegador
-no es una solución, pues la gran mayoría de veces nadie es consciente de eso
-y el error pasas desapercibido. Envuelve tu código con `try/catch` y es ahí
-donde tendrás que elaborar tu plan de reacción a posibles errores
+Mostrar el error por la consola del navegador no es una solución, pues la gran 
+mayoría de veces nadie es consciente de eso y el error pasa desapercibido. 
+Envuelve tu código con `try/catch` y ahí es
+donde tendrás que elaborar tu plan de reacción ante posibles errores
 
 **🙅‍ Mal:**
 
@@ -2059,9 +2060,9 @@ try {
 }
 ```
 
-### No ignores las promesas rechazadas
+### No ignores las _promesas_ rechazadas
 
-No ignores las promesas que han sido rechadas por la misma razón que no deberías
+No ignores las _promesas_ que han sido rechadas por la misma razón que no deberías
 ignorar errores capturados en el `try/catch`.
 
 **🙅‍ Mal:**
@@ -2098,13 +2099,19 @@ cogerDatos()
 
 ## Formato
 
-El formato del código es algo subjetivo. Como otras reglas aquí, no hay una regla
+El formato del código es algo subjetivo. Como otras reglas vistas aquí, no hay una regla
 que deberías seguir o una fórmula secreta. Lo que si que está claro es que no
 deberíamos discutir ni crear conflictos con nuestros compañeros de trabajo acerca
 de estas reglas. Hay unas cuantas [herrmientas](http://standardjs.com/rules.html)
-que automatizan todas las reglas de formato de texto. ¡Ahorrarse tiempo en estas
-formateando el texto es un pasada!
+que automatizan todas las reglas de formato de texto ¡Ahorremos el tiempo de estar formateando el código manualmente!
 
+Muchos editores de código/IDEs pueden formatear automáticamente, solo debemos buscar cuál es la configuración/atajos de teclado que le corresponde, y éste se encargará de organizarnos el código (indentaciones, llaves, corchetes, palabras reservadas, etc)
+
+Ejemplo de algunos editores:
+•[Eclipse](https://stackoverflow.com/questions/29973357/how-do-you-format-code-in-visual-studio-code-vscode#answer-29973358) :Ctrl+Shift+F
+•[VSCode](https://stackoverflow.com/questions/29973357/how-do-you-format-code-in-visual-studio-code-vscode#answer-29973358) : 
+
+https://www.eclipse.org/pdt/help/html/formatting_code.htm
 ### Usa consistenemente la capitalización
 
 Como ya hemos dicho, `javascript` es un lenguage no tipado así pues, la
@@ -2241,7 +2248,7 @@ review.executarRevision();
 
 ### Comenta únicamente la lógica de negocio que es compleja
 
-Los comentarios son una disculpa, no un requerimiento. Supuesatmente se dice
+Los comentarios son una disculpa, no un requerimiento. Supuestamente se dice
 que un buen código debería comentarse por si mismo. Un código perfecto no
 está optimizado para la máquina sinó que lo está para la manteniblidad de éste
 por un compañero o futuro compañero. Para esto, ha de ser lo más semántico posible.
@@ -2317,7 +2324,7 @@ hacerCosas();
 
 Recuerda ¡Usa el control de versioens! No hay motivo alguno para tener código
 muerto, código comentado y aún menos, un diadrio o resumen de modificaciones en
-tus comentarios. Si quieres ver las modificaciones, usa `git log`, la herramiento
+tus comentarios. Si quieres ver las modificaciones, usa `git log`, la herramienta
 `blame` o incluso el `history`.
 
 **🙅‍ Mal:**
